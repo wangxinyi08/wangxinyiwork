@@ -1,4 +1,3 @@
-
 type student struct {
 	name  string
 	score int
@@ -21,7 +20,33 @@ func sort(a []student) {
 	}
 }
 
-a := [student{"a", 95}, student{"b", 92}, student{"c", 90}]
+func findscore(a []student, name string) (score int, ok bool) {
+	for x <- a {
+		if x.name == name {
+			return x.score, true
+		}
+	}
+	return 0, false
+}
+
+func passednames(a []student) []string {
+	return [x.name for x <- a, x.score >= 60]
+}
+func findscore2(a []student, name string) (score int, ok bool) {
+ return {x.score for x <- a,x.name == name}
+}
+
+func hasfailed(a []student)bool{
+return {for x<-a,x.score < 60}
+}
+ 
+a := [student{"a", 95}, student{"b", 92}, student{"c", 9}]
 
 sort(a)
-println(a)
+println(findscore(a, "b"))
+println(findscore(a, "d"))
+println(passednames(a))
+println(findscore2(a, "d"))
+println(findscore2(a, "d"))
+println(hasfailed(a))
+
